@@ -1,23 +1,67 @@
-const defaultResult = 0;
+const defaultResult = 10;
 let currentResult = defaultResult;
 
-const add = (num1, num2) => {
-    const result = num1 + num2;
-    // alert('result is ' + result)
-    return result;
+//gets input from input field
+const calcInput = () => {
+  return parseInt(userInput.value);
+}
+
+// Generates and writes calculation log
+const createAndWriteOutput = (resultBeforeCalc, operator, calcNumber) => {
+  const calcDescription = `${resultBeforeCalc} ${operator} ${calcNumber}`;
+  outputResult(currentResult, calcDescription)
+}
+
+const add = () => {
+  const userInput = calcInput();
+  const initialResult = currentResult;
+  currentResult += userInput;
+  createAndWriteOutput(initialResult, "+", userInput);
+}
+
+const subtract = () => {
+  const userInput = calcInput();
+  const initialResult = currentResult
+  currentResult -= userInput;
+  createAndWriteOutput(initialResult, '-',  userInput)
 
 }
-const subtract = (num1, num2) => {
-  const answer = num1 - num2;
-  return answer;
-};
+const multiply = () => {
+  const userInput = calcInput();
+  const initialResult = currentResult
+  currentResult *= userInput;
+  createAndWriteOutput(initialResult, '*', userInput)//from vendor.js file
 
-const stringify = (num) => {
-  return `("Result: ${num}")`;
-};
+}
+
+const divide = () => {
+  const userInput = calcInput();
+  const initialResult = currentResult
+  currentResult /= userInput;
+  createAndWriteOutput(initialResult, '/', userInput)
 
 
-currentResult = stringify(449);
 
-let calculationResult = `(${defaultResult} + 10) * 3`;
-outputResult(currentResult, calculationResult);// template literal
+}
+
+
+addBtn.addEventListener('click', add);
+subtractBtn.addEventListener('click', subtract);
+divideBtn.addEventListener('click', divide);
+multiplyBtn.addEventListener('click', multiply)
+
+
+// const subtract = (num1, num2) => {
+//   const answer = num1 - num2;
+//   return answer;
+// };
+
+// const stringify = (num) => {
+//   return `("Result: ${num}")`;
+// };
+
+
+// currentResult = stringify(449);
+
+// let calculationResult = `(${defaultResult} + 10) * 3`;
+// outputResult(currentResult, calculationResult);// template literal
