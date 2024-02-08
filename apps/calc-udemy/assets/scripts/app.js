@@ -1,5 +1,6 @@
 const defaultResult = 10;
 let currentResult = defaultResult;
+let logEntries = []
 
 //gets input from input field
 const calcInput = () => {
@@ -12,11 +13,31 @@ const createAndWriteOutput = (resultBeforeCalc, operator, calcNumber) => {
   outputResult(currentResult, calcDescription)
 }
 
+ const writeToLog = (
+  operationIdentifier,
+  prevResult,
+  inputNumber,
+  newResult
+  ) => {
+      const logEntry = {
+        operation: operationIdentifier,
+        prevResult: prevResult,
+        num: inputNumber,
+        result: newResult,
+      };
+      logEntries.push(logEntry);
+      console.log(logEntries);
+
+  }
+
+
 const add = () => {
   const userInput = calcInput();
   const initialResult = currentResult;
   currentResult += userInput;
   createAndWriteOutput(initialResult, "+", userInput);
+  writeToLog('ADD', initialResult, userInput, currentResult);
+
 }
 
 const subtract = () => {
@@ -24,6 +45,8 @@ const subtract = () => {
   const initialResult = currentResult
   currentResult -= userInput;
   createAndWriteOutput(initialResult, '-',  userInput)
+  writeToLog("SUBTRACT", initialResult, userInput, currentResult);
+
 
 }
 const multiply = () => {
@@ -31,6 +54,8 @@ const multiply = () => {
   const initialResult = currentResult
   currentResult *= userInput;
   createAndWriteOutput(initialResult, '*', userInput)//from vendor.js file
+  writeToLog("MULTIPLY", initialResult, userInput, currentResult);
+
 
 }
 
@@ -39,9 +64,7 @@ const divide = () => {
   const initialResult = currentResult
   currentResult /= userInput;
   createAndWriteOutput(initialResult, '/', userInput)
-
-
-
+  writeToLog("DIVIDE", initialResult, userInput, currentResult);
 }
 
 

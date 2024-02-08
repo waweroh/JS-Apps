@@ -1,0 +1,12 @@
+const double = (num) => {
+    const ans = num * 2;
+    return ans
+}
+
+const transform = (num) => {
+    const digit = double(num)
+    return digit
+}
+
+// transform(10,double)
+console.log(transform(10,double));
